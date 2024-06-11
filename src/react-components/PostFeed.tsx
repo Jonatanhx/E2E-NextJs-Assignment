@@ -1,4 +1,10 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import db from "../../prisma/db";
 
 export default async function PostFeed() {
@@ -9,6 +15,11 @@ export default async function PostFeed() {
         <Card key={post.id}>
           <CardHeader>
             <CardTitle>{post.title}</CardTitle>
+            <CardContent>
+              <CardDescription className="max-w-36 line-clamp-3">
+                {post.content}
+              </CardDescription>
+            </CardContent>
           </CardHeader>
         </Card>
       ))}

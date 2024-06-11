@@ -18,10 +18,13 @@ async function seedPost() {
     where: { id: 1 },
     update: {
       title: "My first seeded post",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquam ipsum id rem tempora eum reprehenderit veritatis totam impedit commodi, eius quod nulla temporibus velit expedita at illum vitae doloribus?",
     },
     create: {
       title: "My first seeded post",
-      content: "Lorem ipsum bla bla bla",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquam ipsum id rem tempora eum reprehenderit veritatis totam impedit commodi, eius quod nulla temporibus velit expedita at illum vitae doloribus?",
       author: {
         connect: { id: 1 },
       },
