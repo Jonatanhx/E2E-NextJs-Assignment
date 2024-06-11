@@ -1,7 +1,7 @@
 import db from "./db";
 
 async function seedUser() {
-  db.user.upsert({
+  await db.user.upsert({
     where: { id: 1 },
     update: {
       name: "jonatan helander",
