@@ -13,8 +13,25 @@ async function seedUser() {
   });
 }
 
+async function seedPost() {
+  await db.post.upsert({
+    where: { id: 1 },
+    update: {
+      title: "My first seeded post",
+    },
+    create: {
+      title: "My first seeded post",
+      content: "Lorem ipsum bla bla bla",
+      author: {
+        connect: { id: 1 },
+      },
+    },
+  });
+}
+
 async function main() {
   await seedUser();
+  await seedPost();
 }
 main()
   .then(async () => {
