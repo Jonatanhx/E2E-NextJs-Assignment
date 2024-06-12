@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 export default function LogInButton() {
@@ -11,12 +12,11 @@ export default function LogInButton() {
     } catch (error) {
       console.error("Error signing in:", error);
     }
+    console.log("test");
   };
   return (
-    <div>
-      <button onClick={() => handleSignIn} className="z-40">
-        Sign in
-      </button>
-    </div>
+    <Button variant={"outline"} onClick={handleSignIn}>
+      Log in
+    </Button>
   );
 }
