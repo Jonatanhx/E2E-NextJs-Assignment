@@ -3,7 +3,7 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  title: z.string().min(2).max(25),
-  image: z.string().url(),
-  content: z.string().min(10).max(100),
+  title: z.string().min(1, "Title is required"),
+  image: z.string().url("Invalid URL for image"),
+  content: z.string().min(1, "Content is required"),
 });

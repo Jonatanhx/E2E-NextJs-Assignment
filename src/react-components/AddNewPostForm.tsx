@@ -1,11 +1,9 @@
 "use client";
 import { formSchema } from "@/app/zodSchema";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,25 +13,40 @@ import { Input } from "@/components/ui/input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { addNewPost } from "../../endpoints/post-endpoints";
 
 export default function AddNewPostForm() {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       image: "",
+      content: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  function onSubmit(formData: z.infer<typeof formSchema>) {
+    const { title, content } = formData;
+    const imageUrl = selectedFile ? URL.createObjectURL(selectedFile) : "";
+
+    const updatedFormData = {
+      title,
+      image: imageUrl,
+      content,
+    };
+    console.log(imageUrl);
+    console.log("Form data:", updatedFormData);
+    addNewPost(updatedFormData);
   }
   return (
     <div className="flex flex-1 justify-center">
       <Card className="p-8">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="title"
@@ -43,23 +56,50 @@ export default function AddNewPostForm() {
                   <FormControl>
                     <Input placeholder="example" {...field} />
                   </FormControl>
-                  <FormLabel>Image</FormLabel>
-                  <FormControl>
-                    <Input type="file" placeholder="www.google.com" />
-                  </FormControl>
-                  <FormLabel>Text</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Lorem ipsum..." />
-                  </FormControl>
-                  <FormDescription></FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="bg-white text-black border-black border-2"
-            >
+
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      placeholder="example"
+                      {...field}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                          setSelectedFile(e.target.files[0]);
+                          field.onChange(e);
+                        }
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>content</FormLabel>
+                  <FormControl>
+                    <Input placeholder="example" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -74,7 +114,7 @@ export default function AddNewPostForm() {
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-              Post
+              Submit
             </Button>
           </form>
         </Form>

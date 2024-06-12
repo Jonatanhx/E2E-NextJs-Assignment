@@ -20,7 +20,7 @@ export default async function PostFeed() {
     },
   });
   return (
-    <section className="flex flex-1 justify-center">
+    <section className="flex flex-1 justify-center flex-col">
       {posts.map((post) => (
         <Card key={post.id}>
           <CardHeader>

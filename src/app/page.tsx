@@ -9,7 +9,10 @@ export default async function Home() {
     return (
       <main>
         <AddNewPostForm />
-        <PostFeed />;
+        <div className="flex flex-row">
+          <div className="flex flex-1"></div>
+          <PostFeed />;<div className="flex flex-1"></div>
+        </div>
       </main>
     );
   } else {
