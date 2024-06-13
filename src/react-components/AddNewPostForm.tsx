@@ -31,6 +31,8 @@ export default function AddNewPostForm() {
   });
   function onSubmit(formData: z.infer<typeof formSchema>) {
     const { title, content } = formData;
+
+    //Convert file format into URL format
     const imageUrl = selectedFile ? URL.createObjectURL(selectedFile) : "";
 
     const updatedFormData = {
@@ -54,7 +56,7 @@ export default function AddNewPostForm() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="example" {...field} />
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -70,12 +72,14 @@ export default function AddNewPostForm() {
                   <FormControl>
                     <Input
                       type="file"
-                      placeholder="example"
                       {...field}
-                      onChange={(e) => {
-                        if (e.target.files && e.target.files.length > 0) {
-                          setSelectedFile(e.target.files[0]);
-                          field.onChange(e);
+                      onChange={(event) => {
+                        if (
+                          event.target.files &&
+                          event.target.files.length > 0
+                        ) {
+                          setSelectedFile(event.target.files[0]);
+                          field.onChange(event);
                         }
                       }}
                     />
@@ -90,9 +94,9 @@ export default function AddNewPostForm() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>content</FormLabel>
+                  <FormLabel>Text</FormLabel>
                   <FormControl>
-                    <Input placeholder="example" {...field} />
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

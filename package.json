@@ -10,7 +10,12 @@
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
     "studio": "prisma studio",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed",
+    "reset": "tsx prisma/reset.ts",
+    "cy:dev": "next dev --port 3100",
+    "cy:open": "npx dotenv -e .env.test cypress open --e2e -b chrome",
+    "test": "cross-env NODE_ENV=test       start-server-and-test cy:dev http://localhost:3100 cy:open",
+    "test:push": "dotenv -e .env.test --   prisma db push"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -39,12 +44,15 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cypress": "^13.11.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "prisma": "^5.15.0",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.15.4",
     "typescript": "^5.4.5"
   },
   "include": [
