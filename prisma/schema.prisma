@@ -11,7 +11,7 @@ model User {
   id             Int       @id @default(autoincrement())
   email          String    @unique
   name           String?
-  profilePicture String
+  profilePicture String?
   posts          Post[]
   Account        Account[]
   Session        Session[]
