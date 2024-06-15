@@ -28,7 +28,7 @@ export default async function PostFeed() {
             <div className="flex items-center border-slate-400 border-b-2">
               <Image
                 className="rounded-md mb-2"
-                src={post.author.profilePicture}
+                src={post.author.profilePicture!}
                 alt="user submitted profile picture"
                 width={50}
                 height={50}
