@@ -56,7 +56,7 @@ export default function AddNewPostForm() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} data-cy="title" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -73,6 +73,7 @@ export default function AddNewPostForm() {
                     <Input
                       type="file"
                       {...field}
+                      data-cy="image"
                       onChange={(event) => {
                         if (
                           event.target.files &&
@@ -96,14 +97,14 @@ export default function AddNewPostForm() {
                 <FormItem>
                   <FormLabel>Text</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} data-cy="content" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <Button type="submit">
+            <Button type="submit" data-cy="submit-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -23,7 +23,7 @@ export default async function PostFeed() {
   return (
     <section className="flex flex-1 justify-center flex-col">
       {posts.map((post) => (
-        <Card key={post.id} className="my-2">
+        <Card key={post.id} className="my-2" data-cy="post">
           <CardHeader>
             <div className="flex items-center border-slate-400 border-b-2">
               <Image
