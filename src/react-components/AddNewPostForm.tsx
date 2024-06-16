@@ -32,7 +32,6 @@ export default function AddNewPostForm() {
   function onSubmit(formData: z.infer<typeof formSchema>) {
     const { title, content } = formData;
 
-    //Convert file format into URL format
     const imageUrl = selectedFile ? URL.createObjectURL(selectedFile) : "";
 
     const updatedFormData = {
@@ -40,8 +39,7 @@ export default function AddNewPostForm() {
       image: imageUrl,
       content,
     };
-    console.log(imageUrl);
-    console.log("Form data:", updatedFormData);
+
     addNewPost(updatedFormData);
   }
   return (
