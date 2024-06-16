@@ -54,7 +54,7 @@ export default function AddNewPostForm() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel className="mt-2">Title</FormLabel>
                   <FormControl>
                     <Input {...field} data-cy="title" />
                   </FormControl>
@@ -68,7 +68,7 @@ export default function AddNewPostForm() {
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Image</FormLabel>
+                  <FormLabel className="mt-2">Image</FormLabel>
                   <FormControl>
                     <Input
                       type="file"
@@ -104,7 +104,11 @@ export default function AddNewPostForm() {
               )}
             />
 
-            <Button type="submit" data-cy="submit-button">
+            <Button
+              type="submit"
+              data-cy="submit-button"
+              className="mt-4 hover:ring-4"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

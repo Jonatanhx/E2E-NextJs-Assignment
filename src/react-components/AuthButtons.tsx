@@ -8,6 +8,6 @@ export default async function AuthButtons() {
   if (!session) {
     return <LogInButton />;
   } else {
-    return <LogOutButton props={session} />;
+    return <LogOutButton />;
   }
 }

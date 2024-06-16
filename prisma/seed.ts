@@ -14,6 +14,19 @@ async function seedUser() {
       profilePicture: "https://avatars.githubusercontent.com/u/143586594?v=4",
     },
   });
+  await db.user.upsert({
+    where: { id: 2 },
+    update: {
+      name: "Test Testsson",
+      email: "testtestsson@hotmail.com",
+      profilePicture: "https://avatars.githubusercontent.com/u/172611240?v=4",
+    },
+    create: {
+      name: "Test Testsson",
+      email: "testtestsson@hotmail.com",
+      profilePicture: "https://avatars.githubusercontent.com/u/172611240?v=4",
+    },
+  });
 }
 
 async function seedPost() {

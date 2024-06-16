@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import db from "../prisma/db";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -7,21 +8,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       credentials: {
         email: { label: "Email", type: "text" },
       },
-      authorize: async (credentials) => {
-        let user = null;
-
-        user = {
-          id: "1",
-          name: "Jonatan Helander",
-          email: "jonatanhelander@hotmail.com",
-          profilePicture:
-            "https://avatars.githubusercontent.com/u/143586594?v=4",
-        };
-
-        if (!user) {
-          throw new Error("User not found.");
+      authorize: async (credentials: Partial<Record<"email", unknown>>) => {
+        const email = credentials?.email as string | undefined;
+        if (!email) {
+          throw new Error("Email not provided or invalid");
         }
 
+        const foundUser = await db.user.findFirst({
+          where: {
+            email: email,
+          },
+        });
+
+        const user = {
+          name: foundUser?.name ?? "",
+          email: foundUser?.email,
+          profilePicture: foundUser?.profilePicture || "",
+        };
         return user;
       },
     }),

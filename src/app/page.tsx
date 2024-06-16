@@ -9,13 +9,15 @@ export default async function Home() {
     return (
       <main>
         <AddNewPostForm />
-        <div className="flex flex-row">
-          <div className="flex flex-1"></div>
-          <PostFeed />;<div className="flex flex-1"></div>
-        </div>
+        <PostFeed />
+        <p>{session.user?.email}</p>
       </main>
     );
   } else {
-    return <PostFeed />;
+    return (
+      <main>
+        <PostFeed />
+      </main>
+    );
   }
 }

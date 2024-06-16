@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import {
   Card,
   CardContent,
@@ -6,10 +7,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import db from "../../prisma/db";
+import db from "../../../prisma/db";
 
-export default async function PostFeed() {
+export default async function ProfilePage() {
+  const session = await auth();
+
   const posts = await db.post.findMany({
+    where: {
+      author: {
+        email: session?.user?.email!,
+      },
+    },
     include: {
       author: {
         select: {
@@ -20,10 +28,10 @@ export default async function PostFeed() {
     },
     orderBy: { publishedAt: "desc" },
   });
-  return (
-    <section className="flex">
-      <div className="flex flex-1"></div>
 
+  return (
+    <main className="flex flex-1 justify-center flex-row">
+      <div className="flex-1"></div>
       <div className="flex flex-col">
         {posts.map((post) => (
           <Card key={post.id} className="my-2" data-cy="post">
@@ -43,7 +51,7 @@ export default async function PostFeed() {
             <CardContent>
               <CardDescription
                 className="line-clamp-3"
-                style={{ maxWidth: `${post.title.length * 10}px` }} //Dynamisk max width enligt postens titel
+                style={{ maxWidth: `${post.title.length * 10}px` }}
               >
                 {post.content}
               </CardDescription>
@@ -57,7 +65,8 @@ export default async function PostFeed() {
           </Card>
         ))}
       </div>
-      <div className="flex flex-1"></div>
-    </section>
+
+      <div className="flex-1"></div>
+    </main>
   );
 }

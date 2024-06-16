@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
-import AuthButtons from "./AuthButtons";
+import Link from "next/link";
 import LoggedInUser from "./LoggedInUser";
+import Navbar from "./Navbar";
 
 export default async function Header() {
   const session = await auth();
@@ -8,10 +9,10 @@ export default async function Header() {
   if (session) {
     return (
       <header className="flex py-6 bg-slate-500 border-b-2 border-black justify-between">
-        <h1 className="text-4xl font-bold text-white pl-12 flex items-center">
-          Fakebook
-        </h1>
-        <AuthButtons />
+        <Link href="/" className=" flex items-center">
+          <h1 className="text-4xl font-bold text-white pl-12">Fakebook</h1>
+        </Link>
+        <Navbar />
         <div>
           <LoggedInUser />
         </div>
@@ -25,7 +26,7 @@ export default async function Header() {
         <h1 className="text-4xl font-bold text-white pl-12 flex items-center">
           Fakebook
         </h1>
-        <AuthButtons />
+        <Navbar />
       </header>
     );
   }
