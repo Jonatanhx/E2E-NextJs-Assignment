@@ -14,13 +14,11 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { addNewPost } from "../../endpoints/post-endpoints";
 
 export default function AddNewPostForm() {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,18 +27,22 @@ export default function AddNewPostForm() {
       content: "",
     },
   });
-  function onSubmit(formData: z.infer<typeof formSchema>) {
-    const { title, content } = formData;
 
-    const imageUrl = selectedFile ? URL.createObjectURL(selectedFile) : "";
+  async function onSubmit(formData: z.infer<typeof formSchema>) {
+    const { title, image, content } = formData;
 
     const updatedFormData = {
       title,
-      image: imageUrl,
+      image,
       content,
     };
 
-    addNewPost(updatedFormData);
+    try {
+      await addNewPost(updatedFormData);
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   }
   return (
     <div className="flex flex-1 justify-center">
@@ -66,22 +68,9 @@ export default function AddNewPostForm() {
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="mt-2">Image</FormLabel>
+                  <FormLabel className="mt-2">Image URL</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      {...field}
-                      data-cy="image"
-                      onChange={(event) => {
-                        if (
-                          event.target.files &&
-                          event.target.files.length > 0
-                        ) {
-                          setSelectedFile(event.target.files[0]);
-                          field.onChange(event);
-                        }
-                      }}
-                    />
+                    <Input {...field} data-cy="image" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

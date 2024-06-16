@@ -28,9 +28,8 @@ export async function addNewPost(formData: z.infer<typeof formSchema>) {
         },
       },
     });
-
-    revalidatePath("/");
   } catch (error) {
     throw new Error("Failed to create a post");
   }
+  revalidatePath("/");
 }
