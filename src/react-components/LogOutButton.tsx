@@ -7,7 +7,7 @@ export default function LogOutButton() {
   return (
     <div>
       <div className="flex justify-end">
-        <Button variant={"outline"} onClick={() => signOut()}>
+        <Button variant={"outline"} onClick={() => signOut()} className="m-1">
           Log out
         </Button>
       </div>

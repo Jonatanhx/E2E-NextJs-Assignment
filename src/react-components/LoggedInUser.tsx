@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import Image from "next/image";
+import Link from "next/link";
 import db from "../../prisma/db";
 
 export default async function LoggedInUser() {
@@ -19,14 +20,16 @@ export default async function LoggedInUser() {
   });
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center pr-12">
       <p className="text-white text-xl pr-5">Welcome {session.user.name}</p>
-      <Image
-        src={loggedInUser?.profilePicture || "/default-profile-picture.png"}
-        alt="Github profile picture"
-        width={100}
-        height={100}
-      />
+      <Link href="/profile">
+        <Image
+          src={loggedInUser?.profilePicture || "/default-profile-picture.png"}
+          alt="Github profile picture"
+          width={100}
+          height={100}
+        />
+      </Link>
     </div>
   );
 }

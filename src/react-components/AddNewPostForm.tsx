@@ -45,8 +45,8 @@ export default function AddNewPostForm() {
     }
   }
   return (
-    <div className="flex flex-1 justify-center">
-      <Card className="p-8">
+    <div className="flex flex-1 justify-center mt-2">
+      <Card className="p-8 w-96">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
@@ -54,9 +54,9 @@ export default function AddNewPostForm() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="mt-2">Title</FormLabel>
+                  <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input {...field} data-cy="title" />
+                    <Input {...field} data-cy="title" className="mb-0" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -68,7 +68,7 @@ export default function AddNewPostForm() {
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="mt-2">Image URL</FormLabel>
+                  <FormLabel>Image URL</FormLabel>
                   <FormControl>
                     <Input {...field} data-cy="image" />
                   </FormControl>
@@ -94,7 +94,8 @@ export default function AddNewPostForm() {
             <Button
               type="submit"
               data-cy="submit-button"
-              className="mt-4 hover:ring-4"
+              variant="outline"
+              className="mt-4 border border-black p-0 pl-2 hover:border-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +111,7 @@ export default function AddNewPostForm() {
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-              Submit
+              <p className="p-1 pr-3"> Submit</p>
             </Button>
           </form>
         </Form>

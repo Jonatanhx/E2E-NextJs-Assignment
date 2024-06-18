@@ -12,7 +12,7 @@ export default function LogInButton() {
     }
   };
   return (
-    <Button variant={"outline"} onClick={handleSignIn}>
+    <Button variant={"outline"} onClick={handleSignIn} className="m-1">
       Log in
     </Button>
   );

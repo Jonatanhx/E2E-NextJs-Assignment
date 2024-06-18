@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import DeletePostButton from "@/react-components/DeletePostButton";
 import Image from "next/image";
 import db from "../../../prisma/db";
 
@@ -36,15 +37,19 @@ export default async function ProfilePage() {
         {posts.map((post) => (
           <Card key={post.id} className="my-2" data-cy="post">
             <CardHeader>
-              <div className="flex items-center border-slate-400 border-b-2">
-                <Image
-                  className="rounded-md mb-2"
-                  src={post.author.profilePicture!}
-                  alt="user submitted profile picture"
-                  width={50}
-                  height={50}
-                ></Image>
-                <p className="pl-2 text-xl"> {post.author.name}</p>
+              <div className="flex items-center border-slate-400 border-b-2 justify-between">
+                <div className="flex items-center">
+                  <Image
+                    className="rounded-md mb-2"
+                    src={post.author.profilePicture!}
+                    alt="user submitted profile picture"
+                    width={50}
+                    height={50}
+                  ></Image>
+                  <p className="pl-2 text-xl"> {post.author.name}</p>
+                </div>
+
+                <DeletePostButton key={post.id} postId={post.id} />
               </div>
               <CardTitle className="pt-5">{post.title}</CardTitle>
             </CardHeader>
