@@ -8,7 +8,7 @@ export default async function Header() {
 
   if (session) {
     return (
-      <header className="flex py-6 bg-slate-500 border-b-2 border-black justify-between">
+      <header className="flex py-6 bg-slate-500 border-b-2 border-black justify-between flex-wrap">
         <Link href="/" className=" flex items-center">
           <h1 className="text-4xl font-bold text-white pl-12">Fakebook</h1>
         </Link>

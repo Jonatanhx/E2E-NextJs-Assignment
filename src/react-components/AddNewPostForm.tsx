@@ -45,7 +45,7 @@ export default function AddNewPostForm() {
     }
   }
   return (
-    <div className="flex flex-1 justify-center mt-2">
+    <div className="flex justify-center mt-2 mb-2 ">
       <Card className="p-8 w-96">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

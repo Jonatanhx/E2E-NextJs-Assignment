@@ -7,14 +7,14 @@ export default async function Home() {
 
   if (session) {
     return (
-      <main>
+      <main className="flex flex-1 flex-col">
         <AddNewPostForm />
         <PostFeed />
       </main>
     );
   } else {
     return (
-      <main>
+      <main className="flex flex-1">
         <PostFeed />
       </main>
     );

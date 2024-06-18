@@ -20,7 +20,7 @@ export default async function LoggedInUser() {
   });
 
   return (
-    <div className="flex flex-row items-center pr-12">
+    <div className="flex flex-row items-center px-12">
       <p className="text-white text-xl pr-5">Welcome {session.user.name}</p>
       <Link href="/profile">
         <Image

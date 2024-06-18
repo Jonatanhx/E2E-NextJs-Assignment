@@ -20,6 +20,7 @@ export default async function PostFeed() {
     },
     orderBy: { publishedAt: "desc" },
   });
+
   return (
     <section className="flex">
       <div className="flex flex-1"></div>
