@@ -22,7 +22,7 @@ export default function DeletePostButton({ postId }: deletePostButtonProps) {
   }
 
   return (
-    <div>
+    <div data-cy="delete-post-button">
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <div className="border border-black inline-flex px-2 hover:cursor-pointer rounded-sm">

@@ -44,8 +44,8 @@ describe("Fill out a form with invalid input, check for error correctly", () => 
   });
 });
 
-describe("Profile page should only render posts of the logged in user", () => {
-  it("Creates a a post on 2 different accounts and verifies that only one shows up on the correct account", () => {
+describe("Profile page should only render posts of the logged in user and delete should delete correct post", () => {
+  it("Creates a post on 2 different accounts and verifies that only one shows up on the correct account", () => {
     cy.loginAsJonatan();
     cy.get('[data-cy="title"]').type("My first post");
     cy.get('[data-cy="image"]').type(
@@ -65,5 +65,17 @@ describe("Profile page should only render posts of the logged in user", () => {
 
     cy.get('[data-cy="profile-link"]').click();
     cy.get('[data-cy="post"]').should("have.length", 1);
+  });
+  it("Creates another post and deletes the first one to verify that correct post is removed", () => {
+    cy.visit("/");
+    cy.get('[data-cy="title"]').type("My third post");
+    cy.get('[data-cy="image"]').type(
+      "https://helios-i.mashable.com/imagery/articles/01RhPcOiy9rYKba0BstQt3m/images-1.fill.size_2000x2000.v1611692400.jpg"
+    );
+    cy.get('[data-cy="content"]').type("Hello world again!");
+    cy.get('[data-cy="submit-button"]').click();
+    cy.get('[data-cy="profile-link"]').click();
+
+    cy.get("My third post").get('[data-cy="delete-post-button"]').click();
   });
 });
