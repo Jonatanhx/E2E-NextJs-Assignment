@@ -10,7 +10,6 @@ export default async function Home() {
       <main>
         <AddNewPostForm />
         <PostFeed />
-        <p>{session.user?.email}</p>
       </main>
     );
   } else {

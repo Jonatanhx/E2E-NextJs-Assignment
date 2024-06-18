@@ -35,7 +35,7 @@ export default async function ProfilePage() {
       <div className="flex-1"></div>
       <div className="flex flex-col">
         {posts.map((post) => (
-          <Card key={post.id} className="my-2" data-cy="post">
+          <Card key={post.id} className="my-2 max-w-96 p-6" data-cy="post">
             <CardHeader>
               <div className="flex items-center border-slate-400 border-b-2 justify-between">
                 <div className="flex items-center">
@@ -51,13 +51,10 @@ export default async function ProfilePage() {
 
                 <DeletePostButton key={post.id} postId={post.id} />
               </div>
-              <CardTitle className="pt-5">{post.title}</CardTitle>
+              <CardTitle className="line-clamp-1 py-2">{post.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription
-                className="line-clamp-3"
-                style={{ maxWidth: `${post.title.length * 10}px` }}
-              >
+              <CardDescription className="line-clamp-3 pb-2">
                 {post.content}
               </CardDescription>
               <Image

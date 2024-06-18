@@ -26,7 +26,7 @@ export default async function PostFeed() {
 
       <div className="flex flex-col">
         {posts.map((post) => (
-          <Card key={post.id} className="my-2 max-w-96" data-cy="post">
+          <Card key={post.id} className="my-2 max-w-96 p-6" data-cy="post">
             <CardHeader>
               <div className="flex items-center border-slate-400 border-b-2">
                 <Image
@@ -38,10 +38,10 @@ export default async function PostFeed() {
                 ></Image>
                 <p className="pl-2 text-xl"> {post.author.name}</p>
               </div>
-              <CardTitle className="pt-5 line-clamp-1">{post.title}</CardTitle>
+              <CardTitle className="line-clamp-1 py-2">{post.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription className="line-clamp-3">
+              <CardDescription className="line-clamp-3 pb-2">
                 {post.content}
               </CardDescription>
               <Image
