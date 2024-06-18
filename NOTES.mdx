@@ -1,10 +1,12 @@
 Användarflöde för cypress test
 
-1. Användaren går in på sidan och loggar in genom Github.
+1. Användaren går in på sidan och loggar in genom credentials utifrån dem förskapade i databasen.
 2. Användaren ser därefter formuläret för att skapa ett nytt inlägg.
-3. Zod verifierar att användaren skriver i rätt typer av information i fälten.
-4. Cypress testar att det som fyllts i i formuläret faktiskt renderas ut på sidan.
-5. Cypress verifierar att ett error kastas om något gått fel. 
+3. Användaren skriver i fel värden från Zods verifiering och ser error meddelande.
+4. Användaren har lärt sig från sitt misstag och skriver rätt i formuläret och ser sitt inlägg.
+5. Användaren klickar på sin profilbild eller på profil ikonen och ser sitt nya inlägg.
+6. Användaren presenteras med en ikon för att ta bort inlägget, klickar, och promptas igen för att se till att trycket inte var ett misstag
+
 
 
 
