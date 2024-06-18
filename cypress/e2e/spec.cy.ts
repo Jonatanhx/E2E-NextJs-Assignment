@@ -11,14 +11,14 @@ describe("Initial test", () => {
 
 describe("Log in with credentials and log out", () => {
   it("Clicks log in button and fills out the login form credentials then logs out", () => {
-    cy.login();
-    cy.get("button").contains("Log out").should("be.visible").click();
+    cy.loginAsJonatan();
+    cy.logout();
   });
 });
 
 describe("Fill out the form and create a post", () => {
   it("Fills out the form to create a post and verifies that the post is rendered and that the form is emptied for the next post", () => {
-    cy.login();
+    cy.loginAsJonatan();
     cy.get('[data-cy="title"]').type("My first post");
     cy.get('[data-cy="image"]').type(
       "https://helios-i.mashable.com/imagery/articles/01RhPcOiy9rYKba0BstQt3m/images-1.fill.size_2000x2000.v1611692400.jpg"
@@ -35,11 +35,35 @@ describe("Fill out the form and create a post", () => {
 
 describe("Fill out a form with invalid input, check for error correctly", () => {
   it("Fills out the form with incorrect values and makes sure the errors are handled", () => {
-    cy.login();
-    cy.get('[data-cy="title"]').type("1");
+    cy.loginAsJonatan();
+
     cy.get('[data-cy="submit-button"]').click();
+    cy.get("p").contains("Title is required").should("exist");
+    cy.get("p").contains("Invalid URL for image").should("exist");
+    cy.get("p").contains("Text is required").should("exist");
   });
 });
 
-/* describe("Profile page should only render  ");
- */
+describe("Profile page should only render posts of the logged in user", () => {
+  it("Creates a a post on 2 different accounts and verifies that only one shows up on the correct account", () => {
+    cy.loginAsJonatan();
+    cy.get('[data-cy="title"]').type("My first post");
+    cy.get('[data-cy="image"]').type(
+      "https://helios-i.mashable.com/imagery/articles/01RhPcOiy9rYKba0BstQt3m/images-1.fill.size_2000x2000.v1611692400.jpg"
+    );
+    cy.get('[data-cy="content"]').type("Hello world!");
+    cy.get('[data-cy="submit-button"]').click();
+
+    cy.logout();
+    cy.loginAsTest();
+    cy.get('[data-cy="title"]').type("My second post");
+    cy.get('[data-cy="image"]').type(
+      "https://helios-i.mashable.com/imagery/articles/01RhPcOiy9rYKba0BstQt3m/images-1.fill.size_2000x2000.v1611692400.jpg"
+    );
+    cy.get('[data-cy="content"]').type("Hello world again!");
+    cy.get('[data-cy="submit-button"]').click();
+
+    cy.get('[data-cy="profile-link"]').click();
+    cy.get('[data-cy="post"]').should("have.length", 1);
+  });
+});

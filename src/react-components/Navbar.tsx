@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <nav className="flex items-center">
       <Link href="/profile">
-        <UserCircleIcon className="text-white size-11" />
+        <UserCircleIcon className="text-white size-11" data-cy="profile-link" />
       </Link>
       <AuthButtons />
     </nav>

@@ -1,7 +1,9 @@
 /// <reference types="cypress" />
 declare namespace Cypress {
   interface Chainable<Subject> {
-    login(): Chainable<void>;
+    loginAsJonatan(): Chainable<void>;
+    logout(): Chainable<void>;
+    loginAsTest(): Chainable<void>;
   }
 }
 // ***********************************************
@@ -41,12 +43,24 @@ declare namespace Cypress {
 //   }
 // }
 
-Cypress.Commands.add("login", () => {
+Cypress.Commands.add("loginAsJonatan", () => {
   cy.visit("/");
   cy.get("button").contains("Log in").should("be.visible").click();
-  cy.wait(1000);
   cy.get('input[id="input-email-for-credentials-provider"]').type(
     "jonatanhelander@hotmail.com"
   );
   cy.get("button").click();
+});
+
+Cypress.Commands.add("loginAsTest", () => {
+  cy.visit("/");
+  cy.get("button").contains("Log in").should("be.visible").click();
+  cy.get('input[id="input-email-for-credentials-provider"]').type(
+    "testtestsson@hotmail.com"
+  );
+  cy.get("button").click();
+});
+
+Cypress.Commands.add("logout", () => {
+  cy.get("button").contains("Log out").should("be.visible").click();
 });
