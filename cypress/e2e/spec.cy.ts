@@ -38,9 +38,10 @@ describe("Fill out a form with invalid input, check for error correctly", () => 
     cy.loginAsJonatan();
 
     cy.get('[data-cy="submit-button"]').click();
-    cy.get("p").contains("Title is required").should("exist");
-    cy.get("p").contains("Invalid URL for image").should("exist");
-    cy.get("p").contains("Text is required").should("exist");
+    cy.wait(100);
+    cy.get('[data-cy="title-error-message"]').should("exist");
+    cy.get('[data-cy="image-error-message"]').should("exist");
+    cy.get('[data-cy="content-error-message"]').should("exist");
   });
 });
 
@@ -55,6 +56,7 @@ describe("Profile page should only render posts of the logged in user and delete
     cy.get('[data-cy="submit-button"]').click();
 
     cy.logout();
+    cy.wait(100);
     cy.loginAsTest();
     cy.get('[data-cy="title"]').type("My second post");
     cy.get('[data-cy="image"]').type(
@@ -66,8 +68,9 @@ describe("Profile page should only render posts of the logged in user and delete
     cy.get('[data-cy="profile-link"]').click();
     cy.get('[data-cy="post"]').should("have.length", 1);
   });
+
   it("Creates another post and deletes the first one to verify that correct post is removed", () => {
-    cy.visit("/");
+    cy.loginAsTest();
     cy.get('[data-cy="title"]').type("My third post");
     cy.get('[data-cy="image"]').type(
       "https://helios-i.mashable.com/imagery/articles/01RhPcOiy9rYKba0BstQt3m/images-1.fill.size_2000x2000.v1611692400.jpg"
@@ -75,7 +78,12 @@ describe("Profile page should only render posts of the logged in user and delete
     cy.get('[data-cy="content"]').type("Hello world again!");
     cy.get('[data-cy="submit-button"]').click();
     cy.get('[data-cy="profile-link"]').click();
-
-    cy.get("My third post").get('[data-cy="delete-post-button"]').click();
+    cy.wait(100);
+    cy.contains("h3", "My third post")
+      .closest("div")
+      .find('[data-cy="delete-post-button"]')
+      .click();
+    cy.contains("button", "Continue").click();
+    cy.contains("h3", "My third post").should("not.exist");
   });
 });

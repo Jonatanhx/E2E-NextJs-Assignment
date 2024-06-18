@@ -58,7 +58,7 @@ export default function AddNewPostForm() {
                   <FormControl>
                     <Input {...field} data-cy="title" className="mb-0" />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-cy="title-error-message" />
                 </FormItem>
               )}
             />
@@ -72,7 +72,7 @@ export default function AddNewPostForm() {
                   <FormControl>
                     <Input {...field} data-cy="image" />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-cy="image-error-message" />
                 </FormItem>
               )}
             />
@@ -86,7 +86,7 @@ export default function AddNewPostForm() {
                   <FormControl>
                     <Input {...field} data-cy="content" />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-cy="content-error-message" />
                 </FormItem>
               )}
             />
