@@ -39,10 +39,10 @@ export default async function PostFeed() {
                 ></Image>
                 <p className="pl-2 text-xl"> {post.author.name}</p>
               </div>
-              <CardTitle className="line-clamp-1 py-2">{post.title}</CardTitle>
+              <CardTitle className="line-clamp-1 py-1">{post.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription className="line-clamp-3 pb-2">
+              <CardDescription className="line-clamp-3">
                 {post.content}
               </CardDescription>
               <Image
