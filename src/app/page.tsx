@@ -14,7 +14,7 @@ export default async function Home() {
     );
   } else {
     return (
-      <main className="flex flex-1">
+      <main className="flex flex-1 flex-col">
         <PostFeed />
       </main>
     );
