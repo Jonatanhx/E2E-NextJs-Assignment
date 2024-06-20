@@ -1,18 +1,33 @@
 ## Fakebook
 ---
 
+## **Viktigt**
+
+För att NextAuth och SQLite databasen ska fungera korrekt behöver du först skapa en .env fil i projektets rot och lägga in följande kod:
+
+``
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_SECRET=35d156cc5c2271d0d16870b101e30762a7ee35245af46a9ad19a20438ca30110
+``
+
+
 ## Beskrivning
 
 Detta projekt är en "Facebook klon", en simpel social medie platform där det finns ett feed för inlägg, man kan logga in som en av de seedade användarna och skapa samt ta bort inlägg. 
 
 ## Getting Started
-1. Kör ``npm install`` i terminalen för att hämta ner nödvändiga paket.
-2. Kör ``npm run dev`` i terminalen för att starta dev servern.
+1. Kör ``npm install`` för att hämta ner nödvändiga paket.
+2. Kör ``npm run dev`` för att starta dev servern.
 3. Se projektet i utvecklings miljön på port **[3000](http://localhost:3000/)**.
-4. Kör ``npm run seed`` i terminalen för att skapa användare.
+4. Kör ``npm run seed`` för att skapa användare.
 5. Logga in med email ``testtestsson@hotmail.com``.
 
 ## Testning
+Utsätter att du hämtat ner alla paket med ``npm install``.
+
+1. Kör ``npm run test`` för att starta test servern på port 3100 och sätta igång cypress testerna.
+
+
 
 ## Användarflöde
 1. Användaren går in på sidan och loggar in genom credentials utifrån dem förskapade i databasen.
@@ -20,7 +35,7 @@ Detta projekt är en "Facebook klon", en simpel social medie platform där det f
 3. Användaren skriver i fel värden från Zods verifiering och ser error meddelande.
 4. Användaren har lärt sig från sitt misstag och skriver rätt i formuläret och ser sitt inlägg.
 5. Användaren klickar på sin profilbild eller på profil ikonen och ser sitt nya inlägg.
-6. Användaren presenteras med en ikon för att ta bort inlägget, klickar, och promptas igen för att se till att trycket inte var ett misstag
+6. Användaren presenteras med en ikon för att ta bort inlägget, klickar, och promptas igen för att se till att trycket inte var ett misstag.
 
 
 
