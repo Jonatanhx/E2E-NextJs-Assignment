@@ -1,30 +1,22 @@
+## Fakebook
+---
+
+## Beskrivning
+
+Detta projekt är en "facebook klon", en simpel social medie platform där det finns ett feed för inlägg. Man kan logga in som en av de seedade användarna och skapa samt ta bort inlägg. 
+
 ## Getting Started
+1. ``npm i 
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Användarflöde
+1. Användaren går in på sidan och loggar in genom credentials utifrån dem förskapade i databasen.
+2. Användaren ser därefter formuläret för att skapa ett nytt inlägg.
+3. Användaren skriver i fel värden från Zods verifiering och ser error meddelande.
+4. Användaren har lärt sig från sitt misstag och skriver rätt i formuläret och ser sitt inlägg.
+5. Användaren klickar på sin profilbild eller på profil ikonen och ser sitt nya inlägg.
+6. Användaren presenteras med en ikon för att ta bort inlägget, klickar, och promptas igen för att se till att trycket inte var ett misstag
 
 
 
-## Description
 
-This project is a social media feed where you can make posts, similar to Facebook
-
-
-## Tech stack
-NextJS
-Cypress
-Prisma
-NextAuth
-React Hook Forms
-Zod
